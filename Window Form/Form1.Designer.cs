@@ -42,8 +42,8 @@
             checkRestricted_Access = new CheckBox();
             Display = new Label();
             buttonSubmit = new Button();
-            dataGridView1 = new DataGridView();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            dataGridView = new DataGridView();
+            ((System.ComponentModel.ISupportInitialize)dataGridView).BeginInit();
             SuspendLayout();
             // 
             // FileName
@@ -54,7 +54,6 @@
             FileName.Size = new Size(57, 15);
             FileName.TabIndex = 0;
             FileName.Text = "FileName";
-            FileName.Click += label1_Click;
             // 
             // Location
             // 
@@ -134,7 +133,6 @@
             False.TabStop = true;
             False.Text = "False";
             False.UseVisualStyleBackColor = true;
-            False.CheckedChanged += radioButton1_CheckedChanged;
             // 
             // checkAdmin_Access
             // 
@@ -164,7 +162,6 @@
             Display.Size = new Size(45, 15);
             Display.TabIndex = 12;
             Display.Text = "Display";
-            Display.Click += label1_Click_1;
             // 
             // buttonSubmit
             // 
@@ -176,20 +173,20 @@
             buttonSubmit.UseVisualStyleBackColor = true;
             buttonSubmit.Click += button1_Click;
             // 
-            // dataGridView1
+            // dataGridView
             // 
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(37, 301);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.Size = new Size(723, 136);
-            dataGridView1.TabIndex = 14;
+            dataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView.Location = new Point(37, 301);
+            dataGridView.Name = "dataGridView";
+            dataGridView.Size = new Size(531, 136);
+            dataGridView.TabIndex = 14;
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
-            Controls.Add(dataGridView1);
+            ClientSize = new Size(603, 450);
+            Controls.Add(dataGridView);
             Controls.Add(buttonSubmit);
             Controls.Add(Display);
             Controls.Add(checkRestricted_Access);
@@ -205,9 +202,9 @@
             Controls.Add(Location);
             Controls.Add(FileName);
             Name = "Form1";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Form1";
-            Load += Form1_Load;
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridView).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -228,6 +225,6 @@
         private CheckBox checkRestricted_Access;
         private Label Display;
         private Button buttonSubmit;
-        private DataGridView dataGridView1;
+        private DataGridView dataGridView;
     }
 }

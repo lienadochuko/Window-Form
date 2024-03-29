@@ -4,12 +4,13 @@ namespace Window_Form
 {
     public partial class Form1 : Form
     {
-        DataTable dt =  new DataTable();
+        DataTable dt = new DataTable();
         string File_Name;
         string Locations;
         string NewLocation;
         string AlertSet;
         string AdminAccess;
+        FolderBrowserDialog ofd = new FolderBrowserDialog();
 
         public Form1()
         {
@@ -18,65 +19,67 @@ namespace Window_Form
 
         private void button1_Click(object sender, EventArgs e)
         {
-            //MessageBox.Show("Hello");
-            File_Name = textFileName.Text;
-            Locations = textLocation.Text;
-            NewLocation = textNewLocation.Text;
-
-
-            if (True.Checked)
-            {
-                AlertSet = "True";
-            }
-            else if (False.Checked)
-            {
-                AlertSet = "False";
-            }
-            else
-            {
-                AlertSet = "UnChecked";
-            }
-            if (checkAdmin_Access.Checked)
-            {
-                AdminAccess = "True";
-            }
-            else if (checkRestricted_Access.Checked)
-            {
-                AdminAccess = "True";
-            }
-            else
-            {
-                AdminAccess = "UnChecked";
-            }
-
-            //Display.Text = FileName + " " + Location + " " + NewLocation + " " + Alert + " " + AdminAccess;
+            ofd.ShowDialog();
+            textFileName.Text = ofd.SelectedPath;
             display();
         }
 
         public void display()
         {
-            dt.Columns.Add("FileName");
-            dt.Columns.Add("Location");
-            dt.Columns.Add("NewLocation");
-            dt.Columns.Add("Alert");
-            dt.Columns.Add("AdminAccess");
-
-            DataRow dr = dt.NewRow();
-            dr["FileName"] = File_Name;
-            dr["Location"] = Locations;
-            dr["NewLocation"] = NewLocation;
-            dr["Alert"] = AlertSet;
-            dr["AdminAccess"] = AdminAccess;
-
-            dt.Rows.Add(dr);
-            dataGridView.DataSource = dt;
         }
 
         public void empty()
         {
-            textFileName.Text = "";
-            textLocation.Text = "";
-            textNewLocation.Text = "";
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            ofd.ShowDialog();
+            textDestination.Text = ofd.SelectedPath;
+            display();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // Get the source and destination folder paths
+                string sourceFolder = textFileName.Text;
+                string destinationFolder = textDestination.Text;
+
+                // Check if source and destination folders are valid
+                if (!Directory.Exists(sourceFolder) || !Directory.Exists(destinationFolder))
+                {
+                    MessageBox.Show("Source or destination folder does not exist.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                // Copy all files from source folder to destination folder
+                // Get the list of files in the source folder
+                string[] files = Directory.GetFiles(sourceFolder);
+                string[] files1 = Directory.GetFiles(sourceFolder,);
+                int totalFiles = files.Length;
+                progressBar1.Maximum = totalFiles;
+                progressBar1.Value = 0;
+
+                // Copy each file from the source folder to the destination folder
+                foreach (string file in files)
+                {
+                    string fileName = Path.GetFileName(file);
+                    string destFilePath = Path.Combine(destinationFolder, fileName);
+                    File.Copy(file, destFilePath, true);
+
+                    // Update the progress bar value
+                    progressBar1.Value++;
+                }
+
+                MessageBox.Show("Files copied successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error copying files: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
         }
     }
 }

@@ -112,7 +112,7 @@
             button2.Name = "button2";
             button2.Size = new Size(376, 38);
             button2.TabIndex = 17;
-            button2.Text = "Initiate Copy (.pdf)";
+            button2.Text = "Initiate Copy ";
             button2.UseVisualStyleBackColor = false;
             button2.Click += button2_Click;
             // 

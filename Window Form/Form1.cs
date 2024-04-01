@@ -20,12 +20,15 @@ namespace Window_Form
             filter1 = "";
             filter2 = "";
             filter3 = "";
+            button2.Enabled = false;
+            button1.Enabled = false;
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             ofd.ShowDialog();
             textFileName.Text = ofd.SelectedPath;
+            button1.Enabled = true;
         }
 
         public void empty()
@@ -36,6 +39,7 @@ namespace Window_Form
         {
             ofd.ShowDialog();
             textDestination.Text = ofd.SelectedPath;
+            button2.Enabled = true;
         }
 
         private void button2_Click(object sender, EventArgs e)
